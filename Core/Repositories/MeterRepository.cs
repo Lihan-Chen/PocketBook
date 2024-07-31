@@ -57,11 +57,11 @@ namespace PocketBook.Core.Repositories
             }
         }
 
-        public override async Task<bool> DeleteAsync(string Id)
+        public  async Task<bool> DeleteAsync(string id)
         {
             try
             {
-                var exist = await dbSet.Where(x => x.MeterID == Id).FirstOrDefaultAsync();
+                var exist = await dbSet.Where(x => x.MeterID == id).FirstOrDefaultAsync();
 
                 if (exist == null) return false;
 

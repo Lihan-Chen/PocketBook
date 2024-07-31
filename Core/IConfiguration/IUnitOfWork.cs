@@ -8,7 +8,13 @@ namespace PocketBook.Core.IConfiguration
         // Add all IRepositories here
         IUserRepository Users { get; }
 
+        IEmployeeRepository Employees { get; }
+
         IMeterRepository Meters { get; }
+
+        IAllEventRepository AllEvents { get; }
+
+
 
         Task CompleteAsync(); 
     }

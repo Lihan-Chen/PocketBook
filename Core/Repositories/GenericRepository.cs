@@ -26,12 +26,12 @@ namespace PocketBook.Core.Repositories
             return await dbSet.ToListAsync();
         }
 
-        public virtual async Task<T> GetByIdAsync(Guid id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
             return await dbSet.FindAsync(id); 
         }
 
-        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+        public virtual async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
         {
             // return dbSet.Where(predicate).ToListAsync();
             return await dbSet.Where(predicate).ToListAsync();
@@ -43,20 +43,15 @@ namespace PocketBook.Core.Repositories
             return true;
         }
 
-        public virtual Task<bool> DeleteAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
         public virtual Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public virtual Task<bool> DeleteAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
+        //public virtual Task<bool> DeleteAsync(string id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public virtual Task<bool> UpsertAsync(T entity)
         {

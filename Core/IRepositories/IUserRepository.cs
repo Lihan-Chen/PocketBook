@@ -5,6 +5,6 @@ namespace PocketBook.Core.IRepositories
 {
     public interface IUserRepository : IGenericRepository<User>
     {
-        Task<string> GetFullName(Guid id);
+        Task<string> GetFullName(int id);
     }
 }

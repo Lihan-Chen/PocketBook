@@ -6,16 +6,16 @@ namespace PocketBook.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UsersController : ControllerBase
+    public class EmployeeController : ControllerBase
     {
-        private readonly ILogger<UsersController> _logger;
+        private readonly ILogger<EmployeeController> _logger;
 
         private readonly IUnitOfWork _unitOfWork;
 
 
-        public UsersController(
-            ILogger<UsersController> logger,
-            IUnitOfWork unitOfWork            
+        public EmployeeController(
+            ILogger<EmployeeController> logger,
+            IUnitOfWork unitOfWork
         )
         {
             _logger = logger;
@@ -31,9 +31,9 @@ namespace PocketBook.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetItem(Guid id)
+        public async Task<IActionResult> GetItem(int id)
         {
-            var item = await _unitOfWork.Users.GetByIdAsync(id);
+            var item = await _unitOfWork.Employees.GetByIdAsync(id);
 
             if (item == null)
                 return NotFound();
@@ -41,29 +41,29 @@ namespace PocketBook.Controllers
             return Ok(item);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateUser(User user)
+        public async Task<IActionResult> CreateEmployee(Employee employee)
         {
             if (ModelState.IsValid)
             {
-                user.Id = Guid.NewGuid();
+                employee.Id = Random.Shared.Next(1, 200);
 
-                await _unitOfWork.Users.AddAsync(user);
+                await _unitOfWork.Employees.AddAsync(employee);
                 await _unitOfWork.CompleteAsync();
 
-                return CreatedAtAction("Getitem", new {user.Id}, user);
+                return CreatedAtAction("Getitem", new { employee.Id }, employee);
             }
 
             //return BadRequest();
-            return new JsonResult("Something went wrong") { StatusCode = 500};
+            return new JsonResult("Something went wrong") { StatusCode = 500 };
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateItem(Guid id, User user)
+        public async Task<IActionResult> UpdateItem(int id, Employee employee)
         {
-            if (id != user.Id)
+            if (id != employee.Id)
                 return BadRequest();
 
-            await _unitOfWork.Users.UpsertAsync(user);
+            await _unitOfWork.Employees.UpsertAsync(employee);
             await _unitOfWork.CompleteAsync();
 
             // Following up the REST standart on update we need to return NoContent
@@ -71,7 +71,7 @@ namespace PocketBook.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteItem(Guid id)
+        public async Task<IActionResult> DeleteItem(int id)
         {
             var item = await _unitOfWork.Users.GetByIdAsync(id);
 

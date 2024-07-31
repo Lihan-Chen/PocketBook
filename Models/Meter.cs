@@ -1,7 +1,10 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace PocketBook.Models
 {
+    [PrimaryKey(nameof(MeterID))]
     public class Meter
     {
         [DataObjectField(true, true, false, 2)]

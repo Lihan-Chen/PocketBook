@@ -14,6 +14,8 @@ namespace PocketBook.Data
 
         // Add all IRepositories here
         public IUserRepository Users { get; private set; }
+        public IEmployeeRepository Employees { get; private set; }
+        public IAllEventRepository AllEvents { get; private set; }
         public IMeterRepository Meters { get; private set; }
 
         public UnitOfWork(
@@ -22,8 +24,11 @@ namespace PocketBook.Data
         {
             _context = context;
             _logger = loggerFactory.CreateLogger("Logs");
-
+            
             Users = new UserRepository(_context, _logger);
+            Employees = new EmployeeRepository(_context, _logger);
+            AllEvents = new AllEventRepository(_context, _logger);
+            Meters = new MeterRepository(_context, _logger);
         }
 
         public async Task CompleteAsync()

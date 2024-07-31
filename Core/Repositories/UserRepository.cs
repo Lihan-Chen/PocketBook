@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using PocketBook.Core.IRepositories;
 using PocketBook.Data;
 using PocketBook.Models;
@@ -15,9 +16,18 @@ namespace PocketBook.Core.Repositories
         {
             
         }
-        public Task<string> GetFullName(Guid id)
+        public async Task<string> GetFullName(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var user = await dbSet.Where(x => x.Id == id).FirstOrDefaultAsync();
+                    return $"{user?.FirstName} {user?.LastName}";                
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} UpsertAsync Method error", typeof(UserRepository));
+                return string.Empty;
+            }
         }
 
         public override async Task<IEnumerable<User>> GetAllAsync()
@@ -57,7 +67,7 @@ namespace PocketBook.Core.Repositories
             }
         }
 
-        public override async Task<bool> DeleteAsync(Guid id)
+        public override async Task<bool> DeleteAsync(int id)
         {
             try
             {
