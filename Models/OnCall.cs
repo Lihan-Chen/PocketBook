@@ -1,10 +1,5 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using PocketBook.Models.Validation;
-using PocketBook.Models.Dal;
-using Newtonsoft.Json;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketBook.Models
 {
@@ -20,7 +15,7 @@ namespace PocketBook.Models
         /// Gets or sets the facilName of the OnCall.
         /// </summary>
         [DataObjectFieldAttribute(true, true, false, 2)]
-        [JsonProperty(PropertyName = "facil-no")]
+        [Column("facil-no")]
         public int FacilNo  { get; set; }
         
         /// <summary>
@@ -32,38 +27,22 @@ namespace PocketBook.Models
         /// Gets or sets the operatorID of the OnCall.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false, 7)]
-        [JsonProperty(PropertyName = "operator-id")]
+        [Column("operator-id")]
         public int OperatorID { get; set; }
 
         /// <summary>
         /// Gets or sets the Notified Person's ID of the OnCall.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false, 7)]
-        [JsonProperty(PropertyName = "notified-person")]
-        public int NotifiedPerson { get; set; }
-
-        ///// <summary>
-        ///// Gets or sets the notes of the OnCall.  Default to: "Data Source: OnCall"
-        ///// </summary>
-        //public string Notes { get; set; }
-
-        ///// <summary>
-        ///// Gets or sets the notifiedFacil of the OnCall.
-        ///// </summary>
-        //[DataObjectFieldAttribute(false, false, true, 200)]
-        //[Display(Name = "Notified Facility")]
-        //public string NotifiedFacil { get; set; }
-      
-        [DataObjectFieldAttribute(false, false, false, 300)]
-        [JsonProperty(PropertyName = "subject")]
+        [Column("subject")]
         public string Subject { get; set; }
 
         [DataObjectFieldAttribute(false, false, false, 600)]
-        [JsonProperty(PropertyName = "detail")]
+        [Column("detail")]
         public string Details { get; set; }
 
         [DataObjectFieldAttribute(false, false, false, 200)]
-        [JsonProperty(PropertyName = "location")]
+        [Column("location")]
         public string Location { get; set; }
 
         #endregion

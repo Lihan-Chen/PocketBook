@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using PocketBook.Models.Validation;
 
@@ -186,6 +187,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, false)]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
         [Display(Name = "Event ID / Revision")]
+        [NotMapped]
         public string EventIdentifier => EventID + " / " + Convert.ToString(EventID_RevNo);
 
         /// <summary>
@@ -194,6 +196,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, false)]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")
         [Display(Name = "Event Hightlight")]
+        [NotMapped]
         public string EventHighlight
         {
             get
@@ -250,6 +253,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")
+        [NotMapped]
         public string EventHeader
         {
             get
@@ -274,6 +278,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         [Display(Name = "Action History")]
+        [NotMapped]
         public string EventTrail
         {
             get

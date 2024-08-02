@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using PocketBook.Models.Validation;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketBook.Models;
 
@@ -12,6 +13,7 @@ namespace PocketBook.Models;
 [DebuggerDisplay("AllEvent: {FacilName, nq} {LogTypeName, nq} {EventID, nq} - {EventID_RevNo, nq})")] // ({Type, nq})
 
 [PrimaryKey(nameof(FacilNo), nameof(LogTypeNo), nameof(EventID), nameof(EventID_RevNo))]
+[Table("ESL_AllEvents")]
 public record AllEvent // : BusinessBase
 {
 
@@ -28,6 +30,7 @@ public record AllEvent // : BusinessBase
     /// Gets or sets the facilName of the AllEvents.
     /// </summary>
     [DataObjectField(true, true, false, 2)]
+    [Column("FacilNo")]
     public int FacilNo { get; set; }
 
     /// <summary>
@@ -35,6 +38,8 @@ public record AllEvent // : BusinessBase
     /// </summary>
     /// 
     [DataObjectField(false, false, false, 40)]
+    
+    [NotMapped]
     public string FacilName { get; set; } = string.Empty;
 
     /// <summary>

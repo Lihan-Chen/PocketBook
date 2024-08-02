@@ -1,9 +1,5 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using PocketBook.Models.Validation;
-using PocketBook.Models.Dal;
 
 namespace PocketBook.Models
 {

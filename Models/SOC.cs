@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using PocketBook.Models.Validation;
-using PocketBook.Models.Dal;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace PocketBook.Models

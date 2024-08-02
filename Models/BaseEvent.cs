@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using PocketBook.Models.Validation;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketBook.Models
 {
@@ -12,7 +13,7 @@ namespace PocketBook.Models
     /// </summary>
     [DebuggerDisplay("Event: {FacilName, nq} {LogTypeName, nq} {EventID, nq} - {EventID_RevNo, nq})")] // ({Type, nq})
     [PrimaryKey(nameof(FacilNo), nameof(LogTypeNo), nameof(EventID), nameof(EventID_RevNo))]
-    public class BaseEvent
+    public abstract class BaseEvent
     {
         #region Internal Variables
 
@@ -35,6 +36,7 @@ namespace PocketBook.Models
         /// 
         [DataObjectFieldAttribute(false, false, false)]
         [Display(Name = "Facility")]
+        [NotMapped]
         public string FacilName  { get; set; } = string.Empty;
         
         /// <summary>
@@ -50,6 +52,7 @@ namespace PocketBook.Models
         /// 
         [DataObjectFieldAttribute(false, false, false)]
         [Display(Name = "Log Type")]
+        [NotMapped]
         public string LogTypeName { get; set; } = string.Empty;
 
         /// <summary>
@@ -136,14 +139,8 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 80)]
         [Display(Name = "Notified Person (optional)")]
-        public string? NotifiedPerson_Name
-        {
-            get
-            {
-                return Helpers.GetEmpFullName("NotifiedPerson", NotifiedPerson, FacilNo); ;
-            }
-        }
-
+        public string? NotifiedPerson_Name => Helpers.GetEmpFullName("NotifiedPerson", NotifiedPerson, FacilNo);
+        
         /// <summary>
         /// Gets or sets the shiftNo of the FlowChange.
         /// </summary>
@@ -205,6 +202,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         [Display(Name = "Subject")]
+        [NotMapped]
         public string EventSubject { get; set; }
 
         /// <summary>
@@ -213,6 +211,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, false)]
         [NotNullOrEmpty(Key = "DetailsNotEmpty")]
         [Display(Name = "Details")]
+        [NotMapped]
         public string? EventDetails { get; set; }
 
         /// <summary>

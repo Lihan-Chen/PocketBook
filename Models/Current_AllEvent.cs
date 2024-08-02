@@ -8,7 +8,7 @@ namespace PocketBook.Models
     /// <summary>
     /// The PreScheduled_FlowChange class represents a PreScheduled FlowChange that belongs to a <see cref="PreScheduled_FlowChanget"> PreScheduled_FlowChange</see>.
     /// </summary>    
-    public class Current_AllEvent: AllEvent
+    public record Current_AllEvent: AllEvent
     {
         public Current_AllEvent()
         { }
