@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketBook.Models
 {
@@ -19,76 +20,77 @@ namespace PocketBook.Models
 
         [DataObjectFieldAttribute(false, false, true, 7)]
         [Display(Name = "Reported By (Optional)")]
+        [Column("ReportedBy")]
         public int? ReportedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
+        [Column("EventDate")]
         public DateTime? EventDate { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 5)]
-        public string EventTime { get; set; }
-        
+        [Column("EventTime")]
+        public string? EventTime { get; set; }
+
         [DataObjectFieldAttribute(false, false, false, 300)]
-        public string Subject { get; set; }
+        [Column("Subject")]
+        public string Subject { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, true, 600)]
-        public string Details { get; set; }
+        [Column("Details")]
+        public string? Details { get; set; }
 
         [DataObjectFieldAttribute(false, false, false, 200)]
-        public string Location { get; set; }
+        [Column("Location")]
+        public string? Location { get; set; }
 
         /// <summary>
         /// Gets or sets the eventIdentifier of the FlowChange.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
-        public string EventIdentifier
-        {
-            get
-            {
-                return EventID + " / " + Convert.ToString(EventID_RevNo);
-            }
-
-        }
+        [NotMapped]
+        public string EventIdentifier => $"{EventID} / {Convert.ToString(EventID_RevNo)}";
 
         /// <summary>
         /// Gets or sets the eventHighlight of the FlowChange.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")
+        [NotMapped]
         public string EventHighlight
         {
             get
             {
                 string _EventHighlight = String.Empty;
 
-                _EventHighlight = "Location: " + Location + _CrLf;
+                _EventHighlight = $"Location: {Location}{_CrLf}";
 
                 if (!String.IsNullOrEmpty(Subject))
                 {
-                    _EventHighlight += "Subject: " + Subject + _CrLf;
+                    _EventHighlight += $"Subject: {Subject}{_CrLf}";
                 }
 
                 if (!String.IsNullOrEmpty(Details))
                 {
-                    _EventHighlight += "Details: " + Details + _CrLf;
+                    _EventHighlight += $"Details: {Details}{_CrLf}";
                 }
 
                 if (!String.IsNullOrEmpty(RelatedTo))
                 {
-                    _EventHighlight += "Related to Event Nos.: " + RelatedTo + _CrLf;
+                    _EventHighlight += $"Related to Event Nos.: {RelatedTo}{_CrLf}";
                 }
 
                 if (!String.IsNullOrEmpty(WorkOrders))
                 {
-                    _EventHighlight += "Work Order Nos.: " + WorkOrders + _CrLf;
+                    _EventHighlight += $"Work Order Nos.: {WorkOrders}{_CrLf}";
                 }
 
                 if (!String.IsNullOrEmpty(Notes))
                 {
-                    _EventHighlight += "Additional Notes: " + Notes + _CrLf;
+                    _EventHighlight += $"Additional Notes: {Notes}{_CrLf}";
                 }
 
-                _EventHighlight += "Scanned docs stored: " + ScanDocsNo;
+                _EventHighlight += $"Scanned docs stored: {ScanDocsNo}";
 
                 return _EventHighlight;
             }
@@ -101,6 +103,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")
+        [NotMapped]
         public string EventTrail
         {
             get
@@ -109,13 +112,13 @@ namespace PocketBook.Models
 
                 if (EventDate != null)
                 {
-                    _EventTrail = "Event Dt/Tm: " + EventDate.Value.ToString("MM/dd/yyyy") + ", " + EventTime + _CrLf;
+                    _EventTrail = $"Event Dt/Tm: {EventDate.Value.ToString("MM/dd/yyyy")}, {EventTime}{_CrLf}";
                 }
 
                 if (!String.IsNullOrEmpty(OperatorID.ToString()))
                 {
-                    _EventTrail += "Logged By: " + Helpers.GetEmpFullName("LoggedBy", OperatorID, FacilNo) + _CrLf;
-                    _EventTrail += "Logged Dt/Tm: " + UpdateDate.ToString("MM/dd/yyyy hh:mm") + _CrLf;
+                    _EventTrail += $"Logged By: " + Helpers.GetEmpFullName("LoggedBy", OperatorID, FacilNo) + _CrLf;
+                    _EventTrail += $"Logged Dt/Tm: " + UpdateDate.ToString("MM/dd/yyyy hh:mm") + _CrLf;
                 }
 
                 if (ReportedBy != null)

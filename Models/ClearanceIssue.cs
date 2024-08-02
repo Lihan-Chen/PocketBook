@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using PocketBook.Models.Validation;
@@ -23,82 +24,93 @@ namespace PocketBook.Models
         #region Public Properties
 
         [DataObjectFieldAttribute(false, false, true)]
-        public string Operator { get; set; }
+        [Column("OperatorID")] 
+        public string Operator { get; set; } = string.Empty;
 
-        [DataObjectFieldAttribute(false, false, true)]
-        public string Creator { get; set; }
+        //[DataObjectFieldAttribute(false, false, true)]
+        //[Column("CreatedBy")] 
+        //public string Creator { get; set; }
         
         [DataObjectFieldAttribute(false, false, false, 7)]
-        public int IssuedTo { get; set; }
+        [Column("IssuedTo")] public int IssuedTo { get; set; }
         
         [DataObjectFieldAttribute(false, false, false, 7)]
-        public int IssuedBy { get; set; }
+        [Column("IssuedBy")] public int IssuedBy { get; set; }
         
         /// <summary>
         /// Gets or sets the issuedDate of the ClearanceIssues .
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
+        [Column("IssuedDate")]
         public DateTime IssuedDate { get; set; }
         
        /// <summary>
         /// Gets or sets the eventTime of the ClearanceIssues .
         /// </summary>
         [DataObjectFieldAttribute(false, false, false, 5)]
-        public string IssuedTime { get; set; }
-        
+        [Display(Name = "Issued Time", Prompt = "hh:mm")]
+        [RegularExpression("([01]?[0-9]|2[0-3]):[0-5][0-9]", ErrorMessage = "Time must be a valid 24 hour time in HH:MM format")]
+        [Column("IssuedTime")]
+        public string IssuedTime { get; set; } = string.Empty;
+
         [DataObjectFieldAttribute(false, false, false, 6)]
-        public string FacilAbbr { get; set; }
-        
+        [Column("FacilAbbr")]
+        public string FacilAbbr { get; set; } = string.Empty;
+
         [DataObjectFieldAttribute(false, false, false, 2)]
-        public string ClearanceType { get; set; }
-        
+        [Column("ClearanceType")]
+        public string ClearanceType { get; set; } = string.Empty;
+
         [DataObjectFieldAttribute(false, false, false, 300)]
-        public string ClearanceZone { get; set; }
+        [Column("ClearanceZone")]
+        public string ClearanceZone { get; set; } = string.Empty;
         
         [DataObjectFieldAttribute(false, false, true, 200)]
-        public string Location { get; set; }
+        [Column("Location")] public string? Location { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 600)]
-        public string WorkToBePerformed { get; set; }
+        [Column("WorkToBePerformed")]
+        public string? WorkToBePerformed { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 200)]
-        public string EquipmentInvolved { get; set; }
+        [Column("EquipmentInvolved")]
+        public string? EquipmentInvolved { get; set; }
                 
         [DataObjectFieldAttribute(false, false, true, 7)]
+        [Column("ReleasedTo")]
         public int? ReleasedTo { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 7)]
+        [Column("ReleasedBy")]
         public int? ReleasedBy { get; set; }
         
         [DataObjectFieldAttribute(false, false, true)]
+        [Column("ReleasedDate")] 
         public DateTime? ReleasedDate { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 5)]
-        public string ReleasedTime { get; set; }
+        [Column("ReleaseTime")]
+        public string? ReleasedTime { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 30)]
-        public string ReleaseType { get; set; }
+        [Column("ReleaseType")]
+        public string? ReleaseType { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 200)]
-        public string TagsRemoved { get; set; }
+        [Column("TagsRemoved")]
+        public string? TagsRemoved { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 20)]
-        public string ClearanceID { get; set; }
+        [Column("ClearanceID")] 
+        public string? ClearanceID { get; set; }
 
         /// <summary>
         /// Gets or sets the eventIdentifier of the FlowChange.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         [NotMapped]
-        public string EventIdentifier
-        {
-            get
-            {
-                return ClearanceID + " / " + Convert.ToString(EventID_RevNo);
-            }
-
-        }
-
+        public string EventIdentifier => $"{ClearanceID} / {Convert.ToString(EventID_RevNo)}";
+        
         /// <summary>
         /// Gets or sets the eventHighlight of the FlowChange.
         /// </summary>

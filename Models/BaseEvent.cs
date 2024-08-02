@@ -24,14 +24,15 @@ namespace PocketBook.Models
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the facilName of the FlowChange.
+        /// Gets or sets the facilName of the event.
         /// </summary>
         [DataObjectFieldAttribute(true, true, false, 2)]
         [Display(Name = "Facil. No.")]
+        [Column("FacilNo")] 
         public int FacilNo  { get; set; }
         
         /// <summary>
-        /// Gets or sets the facilName of the FlowChange.
+        /// Gets or sets the facilName of the event.
         /// </summary>
         /// 
         [DataObjectFieldAttribute(false, false, false)]
@@ -44,6 +45,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(true, true, false, 2)]
         [Display(Name = "Log Type No.")]
+        [Column("LogTypeNo")]
         public int LogTypeNo  { get; set; }
 
         /// <summary>
@@ -60,6 +62,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(true, true, false, 20)]
         [Display(Name = "Event ID")]
+        [Column("EventID")]
         public string EventID { get; set; } = string.Empty;
 
         /// <summary>
@@ -67,6 +70,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(true, true, false, 2)]
         [Display(Name = "Revision No.")]
+        [Column("EventID_RevNo")]
         public int EventID_RevNo { get; set; }
 
         /// <summary>
@@ -75,6 +79,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, false, 7)]
         [Display(Name = "Operator")]
         [Required(ErrorMessage="Need to select a name from pull-down list.  Please try again.")]
+        [Column("OperatorID")]
         public int OperatorID { get; set; }
 
         /// <summary>
@@ -83,6 +88,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, true, 7)]
         //[Display(Name = "Created By")]
         //[Required(ErrorMessage = "Need to select a name from pull-down list.  Please try again.")]
+        [Column("CreateBy")]
         public int? CreatedBy { get; set; }
 
         /// <summary>
@@ -90,6 +96,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         [Display(Name = "Created Date")]
+        [Column("CreatedDate")]
         public DateTime? CreatedDate { get; set; }
         
         /// <summary>
@@ -97,6 +104,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 100)]
         [Display(Name = "Modify Flag")]
+        [Column("ModifyFlag")]
         public string? ModifyFlag { get; set; }
         
         /// <summary>
@@ -104,6 +112,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 7)]
         [Display(Name = "Modified By")]
+        [Column("ModifiedBy")]
         public int? ModifiedBy { get; set; }
 
         /// <summary>
@@ -111,6 +120,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true)]
         [Display(Name = "Date Modified")]
+        [Column("ModifiedDate")]
         public DateTime? ModifiedDate { get; set; }
 
         /// <summary>
@@ -118,6 +128,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 400)]
         [Display(Name = "Notes")]
+        [Column("Notes")]
         public string? Notes { get; set; }
 
         /// <summary>
@@ -125,6 +136,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 200)]
         [Display(Name = "Notified Facility")]
+        [Column("NotifiedFacil")]
         public string? NotifiedFacil { get; set; }
 
         /// <summary>
@@ -132,6 +144,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 7)]
         // [Display(Name = "Notified Person (optional)")]
+        [Column("NotifiedPerson")]
         public int? NotifiedPerson { get; set; }
 
         /// <summary>
@@ -154,6 +167,7 @@ namespace PocketBook.Models
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
         //[RegularExpression("^d{2}$", ErrorMessage = "Please enter YY format.")]
         [Display(Name = "Year")]
+        [Column("Yr")]
         public string Yr { get; set; } = DateTime.Now.Year.ToString();
 
         /// <summary>
@@ -161,6 +175,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, false, 6)]
         [Display(Name = "Sequence No.")]
+        [Column("SeqNo")]
         public int SeqNo { get; set; }
 
         /// <summary>
@@ -168,12 +183,14 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, false, 60)]
         [Display(Name = "Updated By")]
+        [Column("UpdatedBy")]
         public string UpdatedBy { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the updateDate of the FlowChange.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
+        [Column("UpdateDate")]
         public DateTime UpdateDate { get; set; }
 
         /// <summary>
@@ -181,6 +198,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 100)]
         [Display(Name = "Work Orders")]
+        [Column("WorkOrders")]
         public string? WorkOrders { get; set; }
 
         /// <summary>
@@ -188,6 +206,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 200)]
         [Display(Name = "Related To")]
+        [Column("RelatedTo")]
         public string? RelatedTo { get; set; }
         
         /// <summary>
@@ -195,30 +214,34 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 15)]
         [Display(Name = "Operator Type (Optional)")]
+        [Column("OperatoryType")]
         public string? OperatorType { get; set; }
-
-        /// <summary>
-        /// Gets or sets the eventSubject of the FlowChange.
-        /// </summary>
-        [DataObjectFieldAttribute(false, false, false)]
-        [Display(Name = "Subject")]
-        [NotMapped]
-        public string EventSubject { get; set; }
-
-        /// <summary>
-        /// Gets or sets the eventDetails of the FlowChange.
-        /// </summary>
-        [DataObjectFieldAttribute(false, false, false)]
-        [NotNullOrEmpty(Key = "DetailsNotEmpty")]
-        [Display(Name = "Details")]
-        [NotMapped]
-        public string? EventDetails { get; set; }
 
         /// <summary>
         /// Gets or sets the ScanDocsNo of the AllEvents.
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 2)]
         public int ScanDocsNo { get; set; }
+
+
+        ///// <summary>
+        ///// Gets or sets the eventSubject of the FlowChange.
+        ///// </summary>
+        //[DataObjectFieldAttribute(false, false, false)]
+        //[Display(Name = "Subject")]
+        //[NotMapped]
+        //public string EventSubject { get; set; }
+
+        ///// <summary>
+        ///// Gets or sets the eventDetails of the FlowChange.
+        ///// </summary>
+        //[DataObjectFieldAttribute(false, false, false)]
+        //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
+        //[Display(Name = "Details")]
+        //[NotMapped]
+        //public string? EventDetails { get; set; }
+
+        
 
         #endregion
     }

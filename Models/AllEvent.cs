@@ -47,6 +47,7 @@ public record AllEvent // : BusinessBase
     /// </summary>
     /// 
     [DataObjectField(false, false, false, 5)]
+    [NotMapped]
     public string FacilAbbr { get; set; } = string.Empty;
 
 
@@ -54,6 +55,8 @@ public record AllEvent // : BusinessBase
     /// Gets or sets the logTypeNo of the AllEvents.
     /// </summary>
     [DataObjectField(true, true, false, 2)]
+    
+    [Column("LogTypeNo")]
     public int LogTypeNo { get; set; }
 
     /// <summary>
@@ -61,36 +64,43 @@ public record AllEvent // : BusinessBase
     /// </summary>
     /// 
     [DataObjectField(false, false, false, 100)]
+    [NotMapped]
     public string LogTypeName { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the eventID of the AllEvents.
     /// </summary>
     [DataObjectField(true, true, false, 20)]
+    [Column("EventID")]
     public string EventID { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the eventID_RevNo of the AllEvents.
     /// </summary>
     [DataObjectField(true, true, false, 2)]
+
+    [Column("EventID_RevNo")]
     public int EventID_RevNo { get; set; }
 
     /// <summary>
     /// Gets or sets the eventDate of the AllEvents.
     /// </summary>
     [DataObjectField(false, false, false)]
+    [Column("EventDate")]
     public DateTime? EventDate { get; set; }
 
     /// <summary>
     /// Gets or sets the eventTime of the AllEvents.
     /// </summary>
     [DataObjectField(false, false, false, 5)]
+    [Column("EventTime")]
     public string EventTime { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the subject of the AllEvents.
     /// </summary>
     [DataObjectField(false, false, false, 300)]
+    [Column("Subject")]
     public string Subject { get; set; } = string.Empty;
 
     /// <summary>
@@ -98,18 +108,22 @@ public record AllEvent // : BusinessBase
     /// </summary>
     [DataObjectField(false, false, false, 2000)]
     //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
+
+    [Column("Details")] 
     public string Details { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the modifyFlag of the FlowChange.
     /// </summary>
     [DataObjectField(false, false, true, 100)]
+    [Column("ModifyFlag")]
     public string? ModifyFlag { get; set; }
 
     /// <summary>
     /// Gets or sets the notes of the FlowChange.
     /// </summary>
     [DataObjectField(false, false, true, 400)]
+    [Column("Notes")]
     public string? Notes { get; set; }
 
     /// <summary>
@@ -117,12 +131,14 @@ public record AllEvent // : BusinessBase
     /// </summary>
     [DataObjectField(false, false, false, 15)]
     //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
+    [Column("OperatorType")]
     public string? OperatorType { get; set; }
 
     /// <summary>
     /// Gets or sets the updatedBy uID of the AllEvents.
     /// </summary>
     [DataObjectField(false, false, false, 60)]
+    [Column("UpdatedBy")]
     public string UpdatedBy { get; set; } = string.Empty;
 
     ///// <summary>
@@ -135,19 +151,22 @@ public record AllEvent // : BusinessBase
     /// Gets or sets the updateDate of the AllEvents.
     /// </summary>
     [DataObjectField(false, false, false)]
-    public string UpdateDate { get; set; } = string.Empty;
+    [Column("UpdateDate")]
+    public DateTimeOffset UpdateDate { get; set; }
 
     /// <summary>
     /// Gets or sets the clearanceID of the AllEvents.
     /// </summary>
     [DataObjectField(false, false, false, 20)]
     //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
-    public string ClearanceID { get; set; } = string.Empty;
+    [Column("ClearanceID")]
+    public string? ClearanceID { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the ScanDocsNo of the AllEvents.
     /// </summary>
     [DataObjectField(false, false, true, 2)]
+    [NotMapped]
     public int ScanDocsNo { get; set; }
 
     /// <summary>
@@ -155,6 +174,7 @@ public record AllEvent // : BusinessBase
     /// </summary>
     //[DataObjectField(false, false, false)]
     //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
+    [NotMapped]
     public string EventIdentifier => $"{EventID}/{EventID_RevNo.ToString()}";
 
     /// <summary>
@@ -162,6 +182,7 @@ public record AllEvent // : BusinessBase
     /// </summary>
     //[DataObjectField(false, false, false)]
     //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
+    [NotMapped]
     public string EventHighlight => Subject ?? Subject + _CrLf + (Details ?? (Details + _CrLf) + "Updated By: " + UpdatedBy + " on " + UpdateDate);
 
     //// Navigation to be implemented with EF virtural

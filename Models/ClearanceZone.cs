@@ -4,15 +4,18 @@ using System.ComponentModel;
 using System.Diagnostics;
 using PocketBook.Models.Collections;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace PocketBook.Models
 {
+    [PrimaryKey(nameof(FacilType), nameof(ZoneNo))]
     public class ClearanceZone
     {
 
         [DataObjectFieldAttribute(true, true, false, 5)]
         [DisplayName("Facility Type")]
-        public string FacilType { get; set; }
+        public string FacilType { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(true, true, false, 3)]
         [DisplayName("Zone No.")]
@@ -20,22 +23,22 @@ namespace PocketBook.Models
 
         [DataObjectFieldAttribute(false, false, true, 200)]
         [Display(Name = "Zone Description")]
-        public string ZoneDescription { get; set; }
+        public string? ZoneDescription { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 30)]
         [Display(Name = "Disable?")]
-        public string Disable { get; set; }
+        public string? Disable { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 2)]
-        public int SortNo { get; set; }
+        public int? SortNo { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 400)]
         [DisplayName("Notes")]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 60)]
         [DisplayName("Updated By")]
-        public string UpdatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DataType(DataType.Date)]

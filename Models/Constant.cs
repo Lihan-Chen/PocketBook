@@ -4,9 +4,12 @@ using System.ComponentModel;
 using System.Diagnostics;
 using PocketBook.Models.Collections;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace PocketBook.Models
 {
+    [PrimaryKey(nameof(FacilNo), nameof(ConstantName), nameof(StartDate))]
     public class Constant
     {
 
@@ -33,15 +36,15 @@ namespace PocketBook.Models
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Value")]
-        public int Value { get; set; }
+        public int? Value { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 400)]
         [DisplayName("Comment")]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 60)]
         [DisplayName("Updated By")]
-        public string UpdatedBy { get; set; }
+        public string? UpdatedBy { get; set; } 
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Update Date")]
