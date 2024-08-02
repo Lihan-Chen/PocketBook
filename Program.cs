@@ -11,10 +11,20 @@ namespace PocketBook
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // First add DbContext Interceptor for audit
+            // ref: https://www.milanjovanovic.tech/blog/how-to-use-ef-core-interceptors
+            // ref: https://www.youtube.com/watch?v=mAlO3OuoQvo
+            // builder.Services.AddSingleton<UpdateAuditableInterceptor>();
+            
+            // builder.Services.AddSingleton<InsertOutboxMessagesInterceptor>();
+
             // Ref: https://dev.to/moe23/step-by-step-repository-pattern-and-unit-of-work-with-asp-net-core-5-3l92
-            // Add database service via ApplicationDbContect options
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            // Add database service via ApplicationDbContect options           
+            builder.Services.AddDbContext<ApplicationDbContext> (options =>   //(sp, options => 
             options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+                //.AddInterceptors(
+                //.sp.GetRequiredService<UpdateAuditableInterceptor>())); //,
+                // sp.GetRequiredService<InsertOutboxMessagesInterceptor>())
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
