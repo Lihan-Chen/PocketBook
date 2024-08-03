@@ -11,7 +11,7 @@ namespace PocketBook.Models
     /// The ClearanceIssues class represents an ClearanceIssues that belongs to a <see cref="ClearanceIssue"> ClearanceIssues</see>.
     /// </summary>
     [DebuggerDisplay("ClearanceIssues : {FacilName, nq} {LogTypeName, nq} {EventID, nq} - {EventID_RevNo, nq})")] // ({Type, nq})
-    [Table("ESL_ClearanceIssue")]
+    [Table("ESL_ClearanceIssues")]
     public class ClearanceIssue : BaseEvent
     {
 
@@ -24,7 +24,7 @@ namespace PocketBook.Models
         #region Public Properties
 
         [DataObjectFieldAttribute(false, false, true)]
-        [Column("OperatorID")] 
+        [Column(nameof(OperatorID))] 
         public string Operator { get; set; } = string.Empty;
 
         //[DataObjectFieldAttribute(false, false, true)]
@@ -32,16 +32,18 @@ namespace PocketBook.Models
         //public string Creator { get; set; }
         
         [DataObjectFieldAttribute(false, false, false, 7)]
-        [Column("IssuedTo")] public int IssuedTo { get; set; }
+        [Column(nameof(IssuedTo))]
+        public int IssuedTo { get; set; }
         
         [DataObjectFieldAttribute(false, false, false, 7)]
-        [Column("IssuedBy")] public int IssuedBy { get; set; }
+        [Column(nameof(IssuedBy))]
+        public int IssuedBy { get; set; }
         
         /// <summary>
         /// Gets or sets the issuedDate of the ClearanceIssues .
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
-        [Column("IssuedDate")]
+        [Column(nameof(IssuedDate))]
         public DateTime IssuedDate { get; set; }
         
        /// <summary>
@@ -50,58 +52,59 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, false, 5)]
         [Display(Name = "Issued Time", Prompt = "hh:mm")]
         [RegularExpression("([01]?[0-9]|2[0-3]):[0-5][0-9]", ErrorMessage = "Time must be a valid 24 hour time in HH:MM format")]
-        [Column("IssuedTime")]
+        [Column(nameof(IssuedTime))]
         public string IssuedTime { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, false, 6)]
-        [Column("FacilAbbr")]
+        [Column(nameof(FacilAbbr))]
         public string FacilAbbr { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, false, 2)]
-        [Column("ClearanceType")]
+        [Column(nameof(ClearanceType))]
         public string ClearanceType { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, false, 300)]
-        [Column("ClearanceZone")]
+        [Column(nameof(ClearanceZone))]
         public string ClearanceZone { get; set; } = string.Empty;
         
         [DataObjectFieldAttribute(false, false, true, 200)]
-        [Column("Location")] public string? Location { get; set; }
+        [Column(nameof(Location))] 
+        public string? Location { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 600)]
-        [Column("WorkToBePerformed")]
+        [Column(nameof(WorkToBePerformed))]
         public string? WorkToBePerformed { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 200)]
-        [Column("EquipmentInvolved")]
+        [Column(nameof(EquipmentInvolved))]
         public string? EquipmentInvolved { get; set; }
                 
         [DataObjectFieldAttribute(false, false, true, 7)]
-        [Column("ReleasedTo")]
+        [Column(nameof(ReleasedTo))]
         public int? ReleasedTo { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 7)]
-        [Column("ReleasedBy")]
+        [Column(nameof(ReleasedBy))]
         public int? ReleasedBy { get; set; }
         
         [DataObjectFieldAttribute(false, false, true)]
-        [Column("ReleasedDate")] 
+        [Column(nameof(ReleasedDate))] 
         public DateTime? ReleasedDate { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 5)]
-        [Column("ReleaseTime")]
+        [Column(nameof(ReleasedTime))]
         public string? ReleasedTime { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 30)]
-        [Column("ReleaseType")]
+        [Column(nameof(ReleaseType))]
         public string? ReleaseType { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 200)]
-        [Column("TagsRemoved")]
+        [Column(nameof(TagsRemoved))]
         public string? TagsRemoved { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 20)]
-        [Column("ClearanceID")] 
+        [Column(nameof(ClearanceID))] 
         public string? ClearanceID { get; set; }
 
         /// <summary>

@@ -1,53 +1,69 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using PocketBook.Models.Validation;
 
 namespace PocketBook.Models
 {
+   
+    [PrimaryKey(nameof(FacilNo), nameof(DetailsNo))]
+    [Table("ESL_Details")]
     public class Details
     {
         [DataObjectFieldAttribute(true, true, false, 3)]
         [DisplayName("Facility No.")]
+        [Column(nameof(FacilNo))]
         public int FacilNo { get; set; }
 
         [DataObjectFieldAttribute(true, true, false, 3)]
         [DisplayName("Details No.")]
+        [Column(nameof(DetailsNo))]
         public int DetailsNo { get; set; }
         
         [DataObjectFieldAttribute(false, true, false, 100)]
         [DisplayName("Detail Name")]
-        public string DetailsName { get; set; }
+        [Column(nameof(DetailsName))]
+        public string DetailsName { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, true, false, 5)]
-        public string FacilType { get; set; }
+        [Column(nameof(FacilType))]
+        public string FacilType { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, true, 2)]
-        public int SortNo { get; set; }
+        [Column(nameof(SortNo))]
+        public int? SortNo { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 400)]
         [DisplayName("Notes")]
-        public string Notes { get; set; }
+        [Column(nameof(Notes))]
+        public string? Notes { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 2)]
+        [Column(nameof(SubjectNo))]
         public int? SubjectNo { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Subject")]
-        public string SubjectName { get; set; }
+        [NotMapped]
+        public string SubjectName { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, true, 30)]
-        public string Disable { get; set; }
+        [Column(nameof(Disable))]
+        public string? Disable { get; set; }
 
-        [DataObjectFieldAttribute(false, false, true, 60)]
-
+        [DataObjectFieldAttribute(false, false, true, 60)]        
         [DisplayName("Updated By")]
-        public string UpdatedBy { get; set; }
+        [Column(nameof(UpdatedBy))]
+        public string? UpdatedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Update Date")]
+        [Column(nameof(UpdatedBy))]
         public DateTime? UpdateDate { get; set; }
 
-        
+        public virtual Subject Subject { get; set; } = new Subject();
     }
 }

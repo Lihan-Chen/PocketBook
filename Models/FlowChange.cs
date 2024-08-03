@@ -11,6 +11,7 @@ namespace PocketBook.Models
     /// The FlowChange class represents an FlowChange that belongs to a <see cref="FlowChange"> FlowChange</see>.
     /// </summary>
     [DebuggerDisplay("FlowChange: {FacilName, nq} {LogTypeName, nq} {EventID, nq} - {EventID_RevNo, nq})")] // ({Type, nq})
+    [Table("ESL_FlowChanges")]
     public class FlowChange : BaseEvent
     {
         #region Private Variables
@@ -24,7 +25,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 7)]
         // [Display(Name = "Requested By (optional)")]
-        [Column("RequestedBy")]
+        [Column(nameof(RequestedBy))]
         public int? RequestedBy { get; set; }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, false, 7)]
         // [Display(Name = "Requested To")]
         [Required(ErrorMessage = "Need to select a name from pull-down list.  Please try again.")]
-        [Column("RequestedTo")]
+        [Column(nameof(RequestedTo))]
         public int RequestedTo { get; set; }
 
         /// <summary>
@@ -50,14 +51,9 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, false, 80)]
         [Display(Name = "Requested To")]
         [Required(ErrorMessage = "Need to select a name from pull-down list.  Please try again.")]
-        public string RequestedTo_Name
-        {
-            get
-            {
-                return Helpers.GetEmpFullName("RequestedTo", RequestedTo, FacilNo);
-            }
-        }
-
+        [NotMapped]
+        public string RequestedTo_Name => Helpers.GetEmpFullName("RequestedTo", RequestedTo, FacilNo);
+        
         /// <summary>
         /// Gets or sets the requestedDate of the FlowChange.
         /// </summary>
@@ -66,7 +62,7 @@ namespace PocketBook.Models
         [Required(ErrorMessage = "Request Date is Required.")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [Column("RequestedDate")] 
+        [Column(nameof(RequestedDate))] 
         public DateTime RequestedDate { get; set; }
 
         /// <summary>
@@ -76,7 +72,7 @@ namespace PocketBook.Models
         [Display(Name = "Request Time", Prompt = "hh:mm")]
         [Required(ErrorMessage = "Request Time in hh:mm format is Required.")]
         [RegularExpression("([01]?[0-9]|2[0-3]):[0-5][0-9]")]
-        [Column("RequestedTime")] 
+        [Column(nameof(RequestedTime))] 
         public string RequestedTime { get; set; } = string.Empty;
 
         /// <summary>
@@ -88,7 +84,7 @@ namespace PocketBook.Models
         //[UIHint("Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [Column("EventDate")] 
+        [Column(nameof(EventDate))] 
         public DateTime EventDate { get; set; }
 
         /// <summary>
@@ -99,7 +95,8 @@ namespace PocketBook.Models
         [RegularExpression("([01]?[0-9]|2[0-3]):[0-5][0-9]", ErrorMessage = "Time must be a valid 24 hour time in HH:MM format")]
         //[RegularExpression("^2[0-3]|[01][0-9]:[0-5][0-9]$")]  // "([01]?[0-9]|2[0-3]):[0-5][0-9]"
         //[RegularExpression("^([0-1]?\d|2[0-3]):([0-5]\d)$")]
-        [Column("EventTime")] public string EventTime { get; set; } = string.Empty;
+        [Column(nameof(EventTime))]
+        public string EventTime { get; set; } = string.Empty;
         
         /// <summary>
         /// Gets or sets the offTime of the FlowChange.
@@ -107,13 +104,8 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, true, 5)]
         [Display(Name = "Time Off", Prompt = "hh:mm")]
         [RegularExpression("([01]?[0-9]|2[0-3]):[0-5][0-9]", ErrorMessage = "Time must be a valid 24 hour time in HH:MM format")]
-        [Column("OffTime")] 
-        public string OffTime { get; set; }
-
-        //[DataType(DataType.Time)]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm tt}")]  "([01]?[0-9]|2[0-3]):[0-5][0-9]" "^2[0-3]|[01][0-9]:[0-5][0-9]$"
-        //[Display(Name = "Time Off")]
-        //public DateTime? OffTime { get; set; }
+        [Column(nameof(OffTime))] 
+        public string? OffTime { get; set; }
 
         /// <summary>
         /// Gets or sets the meterID of the FlowChange.
@@ -121,7 +113,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false,false,false, 30)]
         [Required(ErrorMessage = "Meter ID is missing.  Please select fromt the pull-down.")]
         [Display(Name = "Meter ID")]
-        [Column("MeterID")]
+        [Column(nameof(MeterID))]
         public string MeterID { get; set; } = string.Empty;
 
         /// <summary>
@@ -131,7 +123,8 @@ namespace PocketBook.Models
         [Required(ErrorMessage = "Change Value is missing.  When reducing flow, enter a negative sign before the numuber without space.")]
         [Display(Name = "Change +/-", Prompt = "numbers only, no space")]
         [RegularExpression("[-+]?([0-9]*.[0-9]+|[0-9]+)", ErrorMessage = "Change value must be a valid number in digital format.")]  // ^\d+(\.\d{1,2})?$ // ^-*[0-9,\.]+$
-        [Column("ChangeBy")] public string? ChangeBy { get; set; }
+        [Column(nameof(ChangeBy))] 
+        public string? ChangeBy { get; set; }
 
         /// <summary>
         /// Gets or sets the newValue of the FlowChange.
@@ -141,7 +134,7 @@ namespace PocketBook.Models
         [Display(Name = "New Flow")]
         [RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "New value must be a valid positive number in digital format.")]  // "@^(?:[1-9][0-9]*|0)$@"
         [Range(typeof(Decimal), "0", "9999", ErrorMessage = "Price must be a decimal/number between {1} and {2}.")]
-        [Column("NewValue")]
+        [Column(nameof(NewValue))]
         public decimal? NewValue { get; set; }
 
         /// <summary>
@@ -150,7 +143,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, true, 10)]
         //[Required(ErrorMessage = "All unit must be consistent.")]
         [Display(Name = "New Unit")]
-        [Column("Unit")]
+        [Column(nameof(Unit))]
         public string? Unit { get; set; } 
 
         /// <summary>
@@ -160,7 +153,7 @@ namespace PocketBook.Models
         [Display(Name = "Old Value")]
         [RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "Old value must be a valid positive number in digital format.")] // "@^(?:[1-9][0-9]*|0)$@"  // @"[0-9]*\.?[0-9]+"
         [Range(typeof(Decimal), "0", "9999", ErrorMessage = "Price must be a decimal/number between {1} and {2}.")]
-        [Column("OldValue")]
+        [Column(nameof(OldValue))]
         public decimal? OldValue { get; set; }
 
         /// <summary>
@@ -178,7 +171,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, true, 10)]
         [Required(ErrorMessage = "All unit must be consistent.")]
         [Display(Name = "ChangeBy Unit")]
-        [Column("ChangeByUnit")] 
+        [Column(nameof(ChangeByUnit))] 
         public string? ChangeByUnit { get; set; }
 
         /// <summary>
@@ -186,7 +179,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 10)]
         [Display(Name = "Acceptance Status")]
-        [Column("Accepted")] 
+        [Column(nameof(Accepted))] 
         public string? Accepted { get; set; }
 
         /// <summary>

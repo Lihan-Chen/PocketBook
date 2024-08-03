@@ -7,6 +7,7 @@ namespace PocketBook.Models
     /// <summary>
     /// The EOS class represents an EOS that belongs to a <see cref="EOS"> EOS</see>.
     /// </summary>
+    [Table("ESL_EOS")]
     public class EOS : BaseEvent
     {
         #region Private Variables
@@ -18,44 +19,56 @@ namespace PocketBook.Models
         #region Public Properties
 
         [DataObjectFieldAttribute(false, false, true, 7)]
+        [Column(nameof(ReportedBy))]
         public int? ReportedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 7)]
+        [Column(nameof(ReportedTo))]
         public int? ReportedTo { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [Column(nameof(ReportedDate))]
         public DateTime? ReportedDate { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 5)]
-        public string ReportedTime { get; set; }
+        [Column(nameof(ReportedTime))]
+        public string? ReportedTime { get; set; }
 
         [DataObjectFieldAttribute(false, false, false, 120)]
-        public string EquipmentInvolved { get; set; }
+        [Column(nameof(EquipmentInvolved))]
+        public string EquipmentInvolved { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, false, 200)]
-        public string Location { get; set; }
+        [Column(nameof(Location))]
+        public string Location { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, true, 7)]
+        [Column(nameof(ReleasedBy))]
         public int? ReleasedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [Column(nameof(ReleasedDate))]
         public DateTime? ReleasedDate { get; set; }
         
         [DataObjectFieldAttribute(false, false, true, 5)]
-        public string ReleasedTime { get; set; }
+        [Column(nameof(ReleasedTime))]
+        public string? ReleasedTime { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 100)]
-        public string ReleaseType { get; set; }
+        [Column(nameof(ReleaseType))] 
+        public string? ReleaseType { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 100)]
-        public string TagsInstalled { get; set; }
+        [Column(nameof(TagsInstalled))]
+        public string? TagsInstalled { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 100)]
-        public string TagsRemoved { get; set; }
+        [Column(nameof(TagsRemoved))] 
+        public string? TagsRemoved { get; set; }
 
         /// <summary>
         /// Gets or sets the eventIdentifier of the FlowChange.
@@ -64,10 +77,12 @@ namespace PocketBook.Models
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
         [NotMapped]
         public string EventIdentifier => $"{EventID} / {EventID_RevNo.ToString()}";
+
         /// <summary>
         /// Gets or sets the eventHighlight of the FlowChange.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
+        [NotMapped]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")
         public string EventHighlight
         {
@@ -112,6 +127,7 @@ namespace PocketBook.Models
         /// Gets or sets the eventTrail of the FlowChange.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
+        [NotMapped]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")
         public string EventTrail
         {

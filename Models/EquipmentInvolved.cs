@@ -4,41 +4,53 @@ using System.ComponentModel;
 using System.Diagnostics;
 using PocketBook.Models.Collections;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace PocketBook.Models
 {
+    [PrimaryKey(nameof(FacilNo), nameof(EquipNo))]
+    [Table("ESL_EquipmentInvolved")]
     public class EquipmentInvolved
     {
         [DataObjectFieldAttribute(true, true, false, 3)]
         [DisplayName("Facility No.")]
+        [Column(nameof(FacilNo))]
         public int FacilNo { get; set; }
 
         [DataObjectFieldAttribute(false, true, false, 5)]
         [DisplayName("Facility Type")]
-        public string FacilType { get; set; }
+        public string FacilType { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(true, true, false, 3)]
         [DisplayName("Equipment No.")]
+        [Column(nameof(EquipNo))]
         public int EquipNo { get; set; }
 
         [DataObjectFieldAttribute(false, true, false, 100)]
         [DisplayName("Equipment")]
-        public string EquipName { get; set; }
+        [Column(nameof(EquipName))]
+        public string EquipName { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, true, 400)]
         [DisplayName("Notes")]
-        public string Notes { get; set; }
+        [Column(nameof(Notes))]
+        public string? Notes { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 30)]
         [DisplayName("Disable?")]
-        public string Disable { get; set; }
+        [Column(nameof(Disable))]
+        public string? Disable { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 60)]
         [DisplayName("Updated By")]
-        public string UpdatedBy { get; set; }
+        [Column(nameof(UpdatedBy))]
+        public string? UpdatedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Update Date")]
+        [Column(nameof(UpdateDate))]
         public DateTime? UpdateDate { get; set; }
 
     }

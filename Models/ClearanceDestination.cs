@@ -5,6 +5,7 @@ using System.Diagnostics;
 using PocketBook.Models.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.Collections;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketBook.Models
 {
@@ -12,6 +13,7 @@ namespace PocketBook.Models
     /// The Destination class represents a Destination that belongs to a <see cref="Destination"> Facilility</see>.
     /// </summary>
     [DebuggerDisplay("Destination: {DestinationName, nq}")]
+    [NotMapped]
     public class ClearanceDestination //: IEnumerable
     {
         #region Public Properties

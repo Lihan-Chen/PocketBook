@@ -2,12 +2,15 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace PocketBook.Models
 {/// <summary>
  /// The Employee class represents an Employee that belongs to a <see cref="Facility">Employee</see>.
  /// </summary>
     [DebuggerDisplay("Employee: {Employee, nq}")]
+    [PrimaryKey(nameof(Id))]
+    [Table("ESL_Employees")]
     public class Employee // : IEntity
     {
         #region Public Properties
@@ -26,6 +29,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 50)]
         [DisplayName("Last Name")]
+        [Column(nameof(LastName))]
         public string LastName { get; set; } = string.Empty;
 
         /// <summary>
@@ -33,6 +37,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 50)]
         [DisplayName("First Name")]
+        [Column(nameof(FirstName))]
         public string FirstName { get; set; } = string.Empty;
 
         /// <summary>
@@ -40,6 +45,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 100)]
         [DisplayName("Company")]
+        [Column(nameof(Company))]
         public string Company { get; set; } = string.Empty;
 
 
@@ -48,6 +54,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 100)]
         [DisplayName("Group Name")]
+        [Column(nameof(GroupName))]
         public string GroupName { get; set; } = string.Empty;
 
 
@@ -57,6 +64,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 3)]
         [DisplayName("Facility No.")]
+        [Column(nameof(FacilNo))]
         public int? FacilNo { get; set; }
 
         /// <summary>
@@ -64,6 +72,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 100)]
         [DisplayName("Job Title")]
+        [Column(nameof(JobTitle))]
         public string? JobTitle { get; set; } 
 
         /// <summary>
@@ -72,6 +81,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, true, 400)]
         [DataType(DataType.MultilineText)]
         [DisplayName("Notes")]
+        [Column(nameof(Notes))]
         public string? Notes { get; set; }
 
         /// <summary>
@@ -79,6 +89,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 60)]
         [DisplayName("Updated By")]
+        [Column(nameof(UpdatedBy))]
         public string UpdatedBy { get; set; }
 
         /// <summary>
@@ -86,6 +97,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Update Date")]
+        [Column(nameof(UpdateDate))]
         public DateTimeOffset UpdateDate { get; set; }
 
         /// <summary>
@@ -93,6 +105,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 30)]
         [DisplayName("Disabled?")]
+        [Column(nameof(Disable))]
         public string? Disable { get; set; }
 
         /// Gets or sets the Full Name [VARCHAR2(50)] of the Employee.

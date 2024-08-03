@@ -6,10 +6,12 @@ using PocketBook.Models.Collections;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketBook.Models
 {
     [PrimaryKey(nameof(ClearanceTypeNo))]
+    [Table("ESL_ClearanceTypes")]
     public class ClearanceType
     {
         [DataObjectFieldAttribute(true, true, false, 2)]

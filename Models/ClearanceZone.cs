@@ -6,10 +6,12 @@ using PocketBook.Models.Collections;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketBook.Models
 {
     [PrimaryKey(nameof(FacilType), nameof(ZoneNo))]
+    [Table("ESL_ClearanceZones")]
     public class ClearanceZone
     {
 

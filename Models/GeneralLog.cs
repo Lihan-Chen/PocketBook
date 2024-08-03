@@ -7,6 +7,7 @@ namespace PocketBook.Models
     /// <summary>
     /// The FlowChange class represents an FlowChange that belongs to a <see cref="AllEvent"> AllEvent</see>.
     /// </summary>
+    [Table("ESL_General")]
     public class GeneralLog : BaseEvent
     {
 
@@ -20,27 +21,27 @@ namespace PocketBook.Models
 
         [DataObjectFieldAttribute(false, false, true, 7)]
         [Display(Name = "Reported By (Optional)")]
-        [Column("ReportedBy")]
+        [Column(nameof(ReportedBy))]
         public int? ReportedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
-        [Column("EventDate")]
+        [Column(nameof(EventDate))]
         public DateTime? EventDate { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 5)]
-        [Column("EventTime")]
+        [Column(nameof(EventTime))]
         public string? EventTime { get; set; }
 
         [DataObjectFieldAttribute(false, false, false, 300)]
-        [Column("Subject")]
+        [Column(nameof(Subject))]
         public string Subject { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, true, 600)]
-        [Column("Details")]
+        [Column(nameof(Details))]
         public string? Details { get; set; }
 
         [DataObjectFieldAttribute(false, false, false, 200)]
-        [Column("Location")]
+        [Column(nameof(Location))]
         public string? Location { get; set; }
 
         /// <summary>
