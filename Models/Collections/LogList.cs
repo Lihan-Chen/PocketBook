@@ -2,7 +2,7 @@
 {
     public class LogList : List<Log>
     {
-        public static LogList logList
+        public static LogList? Logs
         {
             get;
             //{

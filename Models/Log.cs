@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 
 namespace PocketBook.Models
@@ -8,9 +9,8 @@ namespace PocketBook.Models
     /// <summary>
     /// The Log class represents an LogType that belongs to a <see cref="Log"> Log</see>.
     /// </summary>
-    [
-      DebuggerDisplay("Logtype: {LogTypeName, nq}")
-    ]
+    [DebuggerDisplay("Logtype: {LogTypeName, nq}")]
+    [NotMapped]
     public class Log
     {
         #region Public Properties
@@ -27,7 +27,7 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, true, false)]
         [DisplayName("Log Type Name")]
-        public string LogTypeName { get; set; }
+        public string LogTypeName { get; set; } = string.Empty;
 
         #endregion
     }

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using PocketBook.Models.Validation;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+using PocketBook.Core.IConfiguration;
 
 namespace PocketBook.Models
 {
@@ -14,7 +15,7 @@ namespace PocketBook.Models
     [DebuggerDisplay("Event: {FacilName, nq} {LogTypeName, nq} {EventID, nq} - {EventID_RevNo, nq})")] // ({Type, nq})
     [PrimaryKey(nameof(FacilNo), nameof(LogTypeNo), nameof(EventID), nameof(EventID_RevNo))]
     [NotMapped]
-    public abstract class BaseEvent
+    public abstract class BaseEvent : IBaseEvent
     {
         #region Internal Variables
 

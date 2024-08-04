@@ -1,9 +1,12 @@
-﻿using mvc4ESL.Models.Dal;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+using mvc4ESL.Models.Dal;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace PocketBook.Models
 {
+    //ToDo
     public class Helpers
     {
         public static string GetEmpFullName(string qryField, int? empNo, int FacilNo)
@@ -44,9 +47,12 @@ namespace PocketBook.Models
                             }
                         }
                     }
-                    catch (OracleException e)
+                    catch (OracleException ex)
                     {
-                        throw;
+                        //throw new OracleException(e);
+                        Console.WriteLine("Record is not read from the database table.");
+                        Console.WriteLine("Exception Message: " + ex.Message);
+                        Console.WriteLine("Exception Source: " + ex.Source);
                     }
                     finally
                     {
@@ -88,7 +94,7 @@ namespace PocketBook.Models
                 }
                 catch (OracleException e)
                 {
-                    throw e;
+                    throw e; 
                 }
                 finally
                 {

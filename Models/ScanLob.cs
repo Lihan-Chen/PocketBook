@@ -4,9 +4,13 @@ using System.ComponentModel;
 using System.Diagnostics;
 using PocketBook.Models.Collections;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace PocketBook.Models
 {
+    [PrimaryKey(nameof(ScanLobNo))]
+    [Table("ESL_ScanLobs")]
     public class ScanLob
     {
         /// <summary>
@@ -25,7 +29,7 @@ namespace PocketBook.Models
         public int LogTypeNo { get; set; }
 
         [DataObjectFieldAttribute(false, false, false)]
-        public string EventID { get; set; }
+        public string EventID { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, false)]
         [DisplayName("Scanned Document No.")]
@@ -33,26 +37,26 @@ namespace PocketBook.Models
 
         [DataObjectFieldAttribute(false, false, false)]
         [DisplayName("Scan File Name")]
-        public string ScanFileName { get; set; }
+        public string ScanFileName { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, false)]
         [DisplayName("Scan File Type")]
-        public string ScanLobType { get; set; }
-        
+        public string ScanLobType { get; set; } = string.Empty;
+
         [DataObjectFieldAttribute(false, false, false)]
         [DisplayName("File")]
-        public Byte[] Blob { get; set; }
+        public Byte[] Blob { get; set; } = new Byte[0];
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Notes")]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Updated By")]
-        public string UpdatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Update Date")]
-        public DateTime UpdateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
     }
 }

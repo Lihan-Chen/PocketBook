@@ -28,7 +28,8 @@ namespace PocketBook.Core.Repositories
 
         public virtual async Task<T> GetByIdAsync(int id)
         {
-            return await dbSet.FindAsync(id); 
+            //return await dbSet.SingleOrDefaultAsync(id) as T;
+            return await dbSet.FindAsync(id);
         }
 
         public virtual async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)

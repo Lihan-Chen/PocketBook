@@ -19,7 +19,7 @@ namespace PocketBook.Models.Validation
         /// <remarks>Note: when item is null or en empty string, IsValid returns true. This allows you to create options fields. Apply an additional NotNullOrEmpty attribute to enforce a filled in, and valid e-mail address</remarks>
         public override bool IsValid(object item)
         {
-            string tempValue = item as string;
+            string? tempValue = item as string;
             if (string.IsNullOrEmpty(tempValue))
             {
                 return true;

@@ -9,7 +9,7 @@ namespace PocketBook.Models
   /// The Search class represents an Search that belongs to a <see cref="Search"> Search</see>.
   /// </summary>
     [DebuggerDisplay("Search: {FacilName, nq} {LogTypeName, nq} {EventID, nq} - {EventID_RevNo, nq})")] // ({Type, nq})
-    public class Search //: BusinessBase
+    public class SearchDTO //: BusinessBase
     {
 
         #region Private Variables
@@ -31,7 +31,7 @@ namespace PocketBook.Models
     /// </summary>
     /// 
         [DataObjectFieldAttribute(false, false, false)]
-        public string FacilName { get; set; }
+        public string FacilName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the logTypeName of the Search.
@@ -44,14 +44,14 @@ namespace PocketBook.Models
         /// </summary>
         /// 
         [DataObjectFieldAttribute(false, false, false)]
-        public string LogTypeName {get; set; }
-        
+        public string LogTypeName {get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets the eventID of the Search.
         /// </summary>
         [DataObjectFieldAttribute(true, true, false)]
-        public string EventID  { get; set; }
-        
+        public string EventID  { get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets the eventID_RevNo of the Search.
         /// </summary>
@@ -68,72 +68,60 @@ namespace PocketBook.Models
         /// Gets or sets the eventTime of the Search.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
-        public string EventTime  { get; set; }
-        
+        public string EventTime  { get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets the subject of the Search.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
-        public string Subject  { get; set; }
+        public string Subject  { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the details of the Search.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
-        public string Details { get; set; }
-        
+        public string Details { get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets the operatorType of the Search.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
-        public string OperatorType { get; set; }
-        
+        public string OperatorType { get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets the updatedBy of the Search.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
-        public string UpdatedBy { get; set; }
-        
+        public string UpdatedBy { get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets the updateDate of the Search.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
-        public string UpdateDate { get; set; }
-        
+        public string UpdateDate { get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets the clearanceID of the Search.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
-        public string ClearanceID { get; set; }
-        
+        public string ClearanceID { get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets the eventIdentifier of the Search.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
-        public string EventIdentifier
-        {
-            get
-            {
-                return EventID + "/" + Convert.ToString(EventID_RevNo);
-            }           
-        }
+        public string EventIdentifier => $"{EventID} / {Convert.ToString(EventID_RevNo)}";
 
         /// <summary>
         /// Gets or sets the eventHighlight of the Search.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false)]
         //[NotNullOrEmpty(Key = "DetailsNotEmpty")]
-        public string EventHighlight
-        {
-            get
-            {
-                return Subject + _CrLf + Details + _CrLf + "Updated By: " + UpdatedBy + " on " + UpdateDate;
-            }
-        }
+        public string EventHighlight => $"{Subject}{_CrLf}{Details}{_CrLf}Updated By: {UpdatedBy} on {UpdateDate}";
 
         #endregion
     }

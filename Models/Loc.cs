@@ -16,10 +16,10 @@ namespace PocketBook.Models
 
         [DataObjectFieldAttribute(false, true, false)]
         [DisplayName("Facility")]
-        public string FacilName { get; set; }
+        public string FacilName { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, true, false)]
         [DisplayName("Abreviation")]
-        public string FacilAbbr { get; set; }
+        public string FacilAbbr { get; set; } = string.Empty;
     }
 }

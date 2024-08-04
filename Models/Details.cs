@@ -15,6 +15,7 @@ namespace PocketBook.Models
     {
         [DataObjectFieldAttribute(true, true, false, 3)]
         [DisplayName("Facility No.")]
+        [ForeignKey(nameof(Subject))]
         [Column(nameof(FacilNo))]
         public int FacilNo { get; set; }
 
@@ -42,8 +43,9 @@ namespace PocketBook.Models
         public string? Notes { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 2)]
-        [Column(nameof(SubjectNo))]
-        public int? SubjectNo { get; set; }
+        [ForeignKey(nameof(Subject))]
+        [Column("SubjNo")]
+        public int? SubjectRefNo { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Subject")]
@@ -61,9 +63,9 @@ namespace PocketBook.Models
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Update Date")]
-        [Column(nameof(UpdatedBy))]
+        [Column(nameof(UpdateDate))]
         public DateTime? UpdateDate { get; set; }
 
-        public virtual Subject Subject { get; set; } = new Subject();
+        Subject Subject { get; set; } = new Subject();
     }
 }

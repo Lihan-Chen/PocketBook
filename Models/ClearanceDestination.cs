@@ -31,20 +31,20 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, false, 30)]
         [DisplayName("Destination Type")]
-        public string DestinationType { get; set; }
+        public string DestinationType { get; set; } = string.Empty;
         /// <summary>
         /// Gets or sets the Destination Name [VARCHAR2(40)] of the Destination.
         /// </summary>
         [DataObjectFieldAttribute(true, true, false, 60)]
         [DisplayName("Destination")]
-        public string DestinationName { get; set; }
+        public string DestinationName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Destination Abbreviation [VARCHAR2(5)] of the Destination.
         /// </summary>
         [DataObjectFieldAttribute(false, true, false, 6)]
         [DisplayName("Abreviation")]
-        public string DestAbbr { get; set; }
+        public string DestAbbr { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Facility No [NUMBER(3)] of the Destination.
@@ -66,14 +66,14 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 400)]
         [DisplayName("Notes")]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         /// <summary>
         /// Gets or sets the Updated By [VARCHAR2(60)] of the Destination.  UpdatedBy defaults to user
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 60)]
         [DisplayName("Updated By")]
-        public string UpdatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
 
         /// <summary>
         /// Gets or sets the Update Date [DATE] of the Destination. UpdateTime is default to sysdate
@@ -87,14 +87,14 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 15)]
         [DisplayName("Disable?")]
-        public string Disable { get; set; }
+        public string? Disable { get; set; }
 
         /// <summary>
         /// Gets or sets the Visible To [VARCHAR2(60)] of the Destination.
         /// </summary>
         [DataObjectFieldAttribute(false, false, true, 60)]
         [DisplayName("Visible To")]
-        public string VisibleTo { get; set; }
+        public string? VisibleTo { get; set; }
 
         #endregion
     }

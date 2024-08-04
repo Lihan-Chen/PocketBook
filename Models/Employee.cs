@@ -90,7 +90,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, true, 60)]
         [DisplayName("Updated By")]
         [Column(nameof(UpdatedBy))]
-        public string UpdatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
 
         /// <summary>
         /// Gets or sets the Update Date [DATE] of the Facility. UpdateTime is default to sysdate

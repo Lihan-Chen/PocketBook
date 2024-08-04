@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PocketBook.Data;
 
@@ -10,9 +11,11 @@ using PocketBook.Data;
 namespace PocketBook.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240803235024_updated Details with foreign keys to Subject again")]
+    partial class updatedDetailswithforeignkeystoSubjectagain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
@@ -605,6 +608,47 @@ namespace PocketBook.Migrations
                     b.ToTable("ESL_Units");
                 });
 
+            modelBuilder.Entity("PocketBook.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("ID");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Mail");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EmployeeNo")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("EmployeeNo");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("GivenName");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Surname");
+
+                    b.Property<string>("UserPrinicipalName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("UserPrinicipalName");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("ESL_Users");
+                });
+
             modelBuilder.Entity("PocketBook.Models.WorkOrder", b =>
                 {
                     b.Property<int>("FacilNo")
@@ -694,6 +738,17 @@ namespace PocketBook.Migrations
                     b.HasOne("PocketBook.Models.Facility", null)
                         .WithMany("EmployeeList")
                         .HasForeignKey("FacilityFacilNo");
+                });
+
+            modelBuilder.Entity("PocketBook.Models.User", b =>
+                {
+                    b.HasOne("PocketBook.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("PocketBook.Models.Facility", b =>

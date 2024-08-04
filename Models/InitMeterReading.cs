@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using PocketBook.Models.Validation;
 
 namespace PocketBook.Models
 {
+    [NotMapped]
     public class InitMeterReading
     {
         /// <summary>
@@ -21,7 +23,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false,false,false, 30)]
         [Required(ErrorMessage = "Meter ID is missing.  Please select fromt the pull-down.")]
         [Display(Name = "Meter ID")]
-        public string MeterID { get; set; }
+        public string MeterID { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the oldValue of the FlowChange.
@@ -36,7 +38,7 @@ namespace PocketBook.Models
         [DataObjectFieldAttribute(false, false, true, 10)]
         [Required(ErrorMessage = "All unit must be consistent.")]
         [Display(Name = "Old Unit")]
-        public string OldUnit { get; set; }
+        public string OldUnit { get; set; } = string.Empty;
     }
 }
 

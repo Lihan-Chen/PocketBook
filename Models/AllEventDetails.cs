@@ -46,14 +46,14 @@ namespace PocketBook.Models
         /// Gets or sets the eventHighlight of the AllEvents.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false, 400)]
-        public string EventHighlight { get; set; }
-    
+        public string EventHighlight { get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets the eventHighlight of the AllEvents.
         /// </summary>
         [DataObjectFieldAttribute(false, false, false, 400)]
-        public string EventTrail { get; set; }
+        public string EventTrail { get; set; } = string.Empty;
 
-        public virtual AllEvent AllEvent { get; set; }
+        public virtual AllEvent AllEvent { get; set; } = new AllEvent();
   }
 }

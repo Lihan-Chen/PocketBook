@@ -4,9 +4,13 @@ using System.ComponentModel;
 using System.Diagnostics;
 using PocketBook.Models.Collections;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace PocketBook.Models
 {
+    [PrimaryKey(nameof(WorkNo))]
+    [Table("ESL_WorkToBePerformed")]
     public class WorkToBePerformed
     {
         ///// <summary>
@@ -17,34 +21,44 @@ namespace PocketBook.Models
         //[DisplayName("Facility No.")]
         //public int FacilNo { get; set; }
 
-        [DataObjectFieldAttribute(true, true, false, 5)]
-        public string FacilType { get; set; }
+        [DataObjectFieldAttribute(false, true, false, 5)]
+        [DisplayName("Facility Type")]
+        [Column(nameof(FacilType))]
+        public string FacilType { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(true, true, false, 3)]
         [DisplayName("Work No.")]
+        [Column(nameof(WorkNo))]
         public int WorkNo { get; set; }
         
         [DataObjectFieldAttribute(false, true, false, 200)]
-        public string WorkDescription { get; set; }
-
+        [Column(nameof(WorkDescription))]
+        public string WorkDescription { get; set; } = string.Empty;
+       
         [DataObjectFieldAttribute(false, false, true, 400)]
         [DisplayName("Notes")]
-        public string Notes { get; set; }
+        [Column(nameof(Notes))]
+        public string? Notes { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 2)]
-        public int SortNo { get; set; }
+        [DisplayName("Sort No.")]
+        [Column(nameof(SortNo))]
+        public int? SortNo { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 30)]
-        [DisplayName("Disable?")]
-        public string Disable { get; set; }
+        [DisplayName(nameof(Disable))]
+        [Column(nameof(Disable))]
+        public string? Disable { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 60)]
-        [DisplayName("Updated By")]
-        public string UpdatedBy { get; set; }
+        [DisplayName(nameof(UpdatedBy))]
+        [Column(nameof(UpdatedBy))]
+        public string? UpdatedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
-        [DisplayName("Update Date")]
+        [DisplayName(nameof(UpdateDate))]
+        [Column(nameof(UpdateDate))]
         public DateTime? UpdateDate { get; set; }
 
-     }
+    }
 }

@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Diagnostics;
 using PocketBook.Models.Collections;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketBook.Models
 {
+    [NotMapped]
     public class Location
     {
         // ONLY FOR FACILNO >= 50
@@ -17,19 +19,19 @@ namespace PocketBook.Models
 
         [DataObjectFieldAttribute(false, true, false)]
         [DisplayName("Facility")]
-        public string FacilName { get; set; }
+        public string FacilName { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, true, false)]
         [DisplayName("Abreviation")]
-        public string FacilAbbr { get; set; }
+        public string FacilAbbr { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Notes")]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Updated By")]
-        public string UpdatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Update Date")]
@@ -37,6 +39,6 @@ namespace PocketBook.Models
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Disable?")]
-        public string Disable { get; set; }
+        public string? Disable { get; set; }
     }
 }

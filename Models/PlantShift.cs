@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
-using System.Diagnostics;
-using PocketBook.Models.Validation;
 
 namespace PocketBook.Models
 {
+    [PrimaryKey(nameof(FacilNo),nameof(ShiftNo))]
     public class PlantShift
     {
         [DataObjectFieldAttribute(true, true, false, 2)]
@@ -16,20 +15,20 @@ namespace PocketBook.Models
         public int ShiftNo { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 20)]
-        public string ShiftName { get; set; }
+        public string? ShiftName { get; set; }
 
         [DataObjectFieldAttribute(false, true, false, 5)]
-        public string ShiftStart { get; set; }
+        public string ShiftStart { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, true, false, 5)]
-        public string ShiftEnd { get; set; }
+        public string ShiftEnd { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(false, false, true, 400)]
         [DisplayName("Notes")]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         [DataObjectFieldAttribute(false, false, true, 60)]
-        public string UpdatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         public DateTime? UpdateDate { get; set; }

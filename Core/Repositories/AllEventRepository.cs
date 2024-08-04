@@ -56,7 +56,7 @@ namespace PocketBook.Core.Repositories
 
         public async Task<AllEvent> GetByIdAsync(int facilNo, int logTypeNo, string eventID, int eventID_RevNo)
         {
-            return await dbSet.Where(x => x.FacilNo == facilNo & x.LogTypeNo == logTypeNo & x.EventID == eventID & x.EventID_RevNo == eventID_RevNo).FirstOrDefaultAsync();
+            return await dbSet.FirstOrDefaultAsync(x => x.FacilNo == facilNo & x.LogTypeNo == logTypeNo & x.EventID == eventID & x.EventID_RevNo == eventID_RevNo);
         }
 
         public async Task<bool> DeleteAync(int facilNo, int logTypeNo, string eventID, int eventID_RevNo)

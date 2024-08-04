@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Diagnostics;
 using PocketBook.Models.Collections;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketBook.Models
 {
+    [Table("ESL_ScanDocs")]
     public class ScanDoc
     {
         /// <summary>
@@ -21,7 +23,7 @@ namespace PocketBook.Models
         public int LogTypeNo { get; set; }
 
         [DataObjectFieldAttribute(true, true, false)]
-        public string EventID { get; set; }
+        public string EventID { get; set; } = string.Empty;
 
         [DataObjectFieldAttribute(true, true, false)]
         [DisplayName("Scanned Document No.")]
@@ -29,20 +31,20 @@ namespace PocketBook.Models
 
         [DataObjectFieldAttribute(false, false, false)]
         [DisplayName("Scan File Name")]
-        public string ScanFileName { get; set; }
+        public string ScanFileName { get; set; } = string.Empty;
         
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Notes")]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Updated By")]
-        public string UpdatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
 
         [DataObjectFieldAttribute(false, false, true)]
         [DisplayName("Update Date")]
         public DateTime? UpdateDate { get; set; }
 
-        public ICollection<AllEvent> allEvents { get; set; }
+        public ICollection<AllEvent> AllEvents { get; set; } = new List<AllEvent>();
     }
 }

@@ -2,7 +2,7 @@
 {
     public class FacilList : List<Facil>
     {
-        public static FacilList facilList { get; set; }
+        public static FacilList facilList { get; set; } = new FacilList();
         //{
         //    get;
         //    //{

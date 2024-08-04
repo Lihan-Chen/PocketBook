@@ -17,8 +17,8 @@ namespace PocketBook.Models.Validation
     {
         #region Private Variables
 
-        private string _key;
-        private string _message;
+        private string? _key;
+        private string? _message;
 
         #endregion
 

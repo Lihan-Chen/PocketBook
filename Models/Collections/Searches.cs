@@ -3,7 +3,7 @@
     /// <summary>
     /// The SearchList class is designed to work with lists of instances of Search.
     /// </summary>
-    public class Searches : List<Search>
+    public class Searches : List<SearchDTO>
     {
         public Searches()
         { }

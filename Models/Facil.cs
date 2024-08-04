@@ -29,14 +29,14 @@ namespace PocketBook.Models
         /// </summary>
         [DataObjectFieldAttribute(false, true, false)]
         [DisplayName("Facility")]
-        public string FacilName { get; set; }
-              
+        public string FacilName { get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets the Facility Abbreviation [VARCHAR2(8)] of the Facility.
         /// </summary>
         [DataObjectFieldAttribute(false, true, false)]
         [DisplayName("Abreviation")]
-        public string FacilAbbr { get; set; }
+        public string FacilAbbr { get; set; } = string.Empty;
 
         #endregion
 
